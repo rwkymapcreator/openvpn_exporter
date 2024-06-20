@@ -49,7 +49,7 @@ func (e *parseError) Error() string {
 }
 
 const (
-	timefmt = "Mon Jan 2 15:04:05 2006"
+	timefmt = "2006-01-02 15:04:05"
 )
 
 // ParseFile parses a openvpn status log and returns respective stats
