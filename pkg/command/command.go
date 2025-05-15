@@ -117,6 +117,7 @@ func run(cfg *config.Config) error {
 		"buildDate", version.BuildDate,
 		"goVersion", version.GoVersion,
 	)
+	// nolint:prealloc
 	var openVPServers []collector.OpenVPNServer
 	r := prometheus.NewRegistry()
 	if cfg.ExportGoMetrics {
@@ -133,11 +134,11 @@ func run(cfg *config.Config) error {
 		version.Started,
 	))
 	for _, statusFile := range cfg.StatusCollector.StatusFile {
-		serverName, statusFile := parseStatusFileSlice(statusFile)
+		serverName, sFile := parseStatusFileSlice(statusFile)
 		level.Info(logger).Log(
 			"msg", "registering collector for",
 			"serverName", serverName,
-			"statusFile", statusFile,
+			"statusFile", sFile,
 		)
 		openVPServers = append(openVPServers, collector.OpenVPNServer{Name: serverName, StatusFile: statusFile, ParseError: 0})
 	}

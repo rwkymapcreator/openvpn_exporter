@@ -11,8 +11,6 @@ import (
 // OpenVPNCollector collects metrics from openvpn status files
 type OpenVPNCollector struct {
 	logger                log.Logger
-	collectClientMetrics  bool
-	OpenVPNServer         []OpenVPNServer
 	LastUpdated           *prometheus.Desc
 	ConnectedClients      *prometheus.Desc
 	BytesReceived         *prometheus.Desc
@@ -21,6 +19,8 @@ type OpenVPNCollector struct {
 	MaxBcastMcastQueueLen *prometheus.Desc
 	ServerInfo            *prometheus.Desc
 	CollectionError       *prometheus.CounterVec
+	OpenVPNServer         []OpenVPNServer
+	collectClientMetrics  bool
 }
 
 // OpenVPNServer contains information of which servers will be scraped

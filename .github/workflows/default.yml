@@ -18,8 +18,8 @@ jobs:
           make test
           make build
       - name: golangci-lint
-        uses: golangci/golangci-lint-action@v2.3.0
+        uses: golangci/golangci-lint-action@v8
         with:
-          version: v1.33
+          version: v2.1
       - name: Build release type artifacts
         run: make release

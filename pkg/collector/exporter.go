@@ -16,14 +16,13 @@ const (
 // GeneralCollector collects metrics, mostly runtime, about this exporter in general.
 type GeneralCollector struct {
 	logger    log.Logger
+	StartTime *prometheus.Desc
+	BuildInfo *prometheus.Desc
+	started   time.Time
 	version   string
 	revision  string
 	buildDate string
 	goVersion string
-	started   time.Time
-
-	StartTime *prometheus.Desc
-	BuildInfo *prometheus.Desc
 }
 
 // NewGeneralCollector returns a new GeneralCollector.

@@ -4,6 +4,7 @@ IMPORT := github.com/patrickjahns/$(NAME)
 BIN := bin
 DIST := dist
 GO := go
+export GO111MODULE := auto
 
 ifeq ($(OS), Windows_NT)
 	EXECUTABLE := $(NAME).exe
@@ -66,10 +67,8 @@ lint:
 
 .PHONY: test
 test:
-	@which goverage > /dev/null; if [ $$? -ne 0 ]; then \
-		GO111MODULE=off $(GO) get -u github.com/haya14busa/goverage; \
-	fi
-	goverage -v -coverprofile coverage.out $(PACKAGES)
+	@echo "Running tests with coverage..."
+	@go test -v -cover -coverprofile=coverage.out $(PACKAGES)
 
 .PHONY: build
 build: $(BIN)/$(EXECUTABLE)
@@ -86,10 +85,8 @@ release-dirs:
 
 .PHONY: release-build
 release-build:
-	@which gox > /dev/null; if [ $$? -ne 0 ]; then \
-		GO111MODULE=off  $(GO) get -u github.com/mitchellh/gox; \
-	fi
-	gox -arch="386 amd64 arm" -osarch '!darwin/386' -verbose -ldflags '-w $(LDFLAGS)' -output="$(DIST)/$(EXECUTABLE)-{{.OS}}-{{.Arch}}" ./cmd/$(NAME)
+	@echo "Building for linux/amd64..."
+	GOOS=linux GOARCH=amd64 $(GO) build -ldflags "-w $(LDFLAGS)" -o "$(DIST)/$(EXECUTABLE)-linux-amd64" ./cmd/$(NAME)
 
 .PHONY: release-checksums
 release-checksums:

@@ -4,12 +4,12 @@ import "testing"
 
 var containsTestCases = []struct {
 	scenarioName string
-	list         []string
 	element      string
+	list         []string
 	expected     bool
 }{
-	{"contains element", []string{"bar", "foo"}, "bar", true},
-	{"does not contain element", []string{"foo", "bar"}, "baz", false},
+	{"contains element", "bar", []string{"bar", "foo"}, true},
+	{"does not contain element", "baz", []string{"foo", "bar"}, false},
 }
 
 func TestContainsFunction(t *testing.T) {

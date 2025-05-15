@@ -35,9 +35,9 @@ type ServerInfo struct {
 // Status reflects all information in a status log
 type Status struct {
 	ClientList  []Client
-	GlobalStats GlobalStats
-	ServerInfo  ServerInfo
 	UpdatedAt   time.Time
+	ServerInfo  ServerInfo
+	GlobalStats GlobalStats
 }
 
 type parseError struct {
