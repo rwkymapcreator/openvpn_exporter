@@ -117,6 +117,7 @@ func run(cfg *config.Config) error {
 		"buildDate", version.BuildDate,
 		"goVersion", version.GoVersion,
 	)
+	// nolint:prealloc
 	var openVPServers []collector.OpenVPNServer
 	r := prometheus.NewRegistry()
 	if cfg.ExportGoMetrics {
