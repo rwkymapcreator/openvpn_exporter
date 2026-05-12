@@ -1,6 +1,6 @@
-module github.com/patrickjahns/openvpn_exporter
+module github.com/rwkymapcreator/openvpn_exporter
 
-go 1.24
+go 1.26
 
 require (
 	github.com/go-kit/kit v0.13.0

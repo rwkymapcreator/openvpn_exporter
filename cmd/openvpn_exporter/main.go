@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/patrickjahns/openvpn_exporter/pkg/command"
+	"github.com/rwkymapcreator/openvpn_exporter/pkg/command"
 )
 
 func main() {

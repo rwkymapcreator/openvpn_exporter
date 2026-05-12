@@ -49,7 +49,8 @@ func (e *parseError) Error() string {
 }
 
 const (
-	timefmt = "2006-01-02 15:04:05"
+	timefmt        = "2006-01-02 15:04:05"
+	unknownDefault = "unknown"
 )
 
 // ParseFile parses a openvpn status log and returns respective stats
@@ -123,7 +124,7 @@ func parseStatusV1(reader io.Reader) (*Status, error) {
 		GlobalStats: GlobalStats{maxBcastMcastQueueLen},
 		UpdatedAt:   lastUpdatedAt,
 		ClientList:  clients,
-		ServerInfo:  ServerInfo{Version: "unknown", Arch: "unknown", AdditionalInfo: "unknown"},
+		ServerInfo:  ServerInfo{Version: unknownDefault, Arch: unknownDefault, AdditionalInfo: unknownDefault},
 	}, nil
 }
 

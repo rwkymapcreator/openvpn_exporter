@@ -1,6 +1,6 @@
 SHELL := bash
 NAME := openvpn_exporter
-IMPORT := github.com/patrickjahns/$(NAME)
+IMPORT := github.com/rwkymapcreator/$(NAME)
 BIN := bin
 DIST := dist
 GO := go

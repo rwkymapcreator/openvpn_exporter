@@ -2,14 +2,16 @@ package collector
 
 import "testing"
 
+const testBar = "bar"
+
 var containsTestCases = []struct {
 	scenarioName string
 	list         []string
 	element      string
 	expected     bool
 }{
-	{"contains element", []string{"bar", "foo"}, "bar", true},
-	{"does not contain element", []string{"foo", "bar"}, "baz", false},
+	{"contains element", []string{testBar, "foo"}, testBar, true},
+	{"does not contain element", []string{"foo", testBar}, "baz", false},
 }
 
 func TestContainsFunction(t *testing.T) {

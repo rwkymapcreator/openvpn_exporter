@@ -5,7 +5,12 @@ import (
 	"github.com/go-kit/kit/log/level"
 	"github.com/prometheus/client_golang/prometheus"
 
-	"github.com/patrickjahns/openvpn_exporter/pkg/openvpn"
+	"github.com/rwkymapcreator/openvpn_exporter/pkg/openvpn"
+)
+
+const (
+	labelServer     = "server"
+	labelCommonName = "common_name"
 )
 
 // OpenVPNCollector collects metrics from openvpn status files
@@ -40,43 +45,43 @@ func NewOpenVPNCollector(logger log.Logger, openVPNServer []OpenVPNServer, colle
 		LastUpdated: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, "", "last_updated"),
 			"Unix timestamp when the last time the status was updated",
-			[]string{"server"},
+			[]string{labelServer},
 			nil,
 		),
 		ConnectedClients: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, "", "connections"),
 			"Amount of currently connected clients",
-			[]string{"server"},
+			[]string{labelServer},
 			nil,
 		),
 		MaxBcastMcastQueueLen: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, "", "max_bcast_mcast_queue_len"),
 			"MaxBcastMcastQueueLen of the server",
-			[]string{"server"},
+			[]string{labelServer},
 			nil,
 		),
 		BytesReceived: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, "", "bytes_received"),
 			"Amount of data received via the connection",
-			[]string{"server", "common_name"},
+			[]string{labelServer, labelCommonName},
 			nil,
 		),
 		BytesSent: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, "", "bytes_sent"),
 			"Amount of data sent via the connection",
-			[]string{"server", "common_name"},
+			[]string{labelServer, labelCommonName},
 			nil,
 		),
 		ConnectedSince: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, "", "connected_since"),
 			"Unixtimestamp when the connection was established",
-			[]string{"server", "common_name"},
+			[]string{labelServer, labelCommonName},
 			nil,
 		),
 		ServerInfo: prometheus.NewDesc(
 			prometheus.BuildFQName(namespace, "", "server_info"),
 			"A metric with a constant '1' value labeled by version information",
-			[]string{"server", "version", "arch"},
+			[]string{labelServer, "version", "arch"},
 			nil,
 		),
 		CollectionError: prometheus.NewCounterVec(
@@ -84,7 +89,7 @@ func NewOpenVPNCollector(logger log.Logger, openVPNServer []OpenVPNServer, colle
 				Name: prometheus.BuildFQName(namespace, "", "collection_error"),
 				Help: "Error occurred during collection",
 			},
-			[]string{"server"},
+			[]string{labelServer},
 		),
 	}
 }

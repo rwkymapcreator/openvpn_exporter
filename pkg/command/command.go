@@ -11,9 +11,9 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/urfave/cli/v2"
 
-	"github.com/patrickjahns/openvpn_exporter/pkg/collector"
-	"github.com/patrickjahns/openvpn_exporter/pkg/config"
-	"github.com/patrickjahns/openvpn_exporter/pkg/version"
+	"github.com/rwkymapcreator/openvpn_exporter/pkg/collector"
+	"github.com/rwkymapcreator/openvpn_exporter/pkg/config"
+	"github.com/rwkymapcreator/openvpn_exporter/pkg/version"
 )
 
 // Run parses the command line arguments and executes the program.
@@ -23,12 +23,6 @@ func Run() error {
 		Name:    "openvpn_exporter",
 		Version: version.Info(),
 		Usage:   "OpenVPN exporter",
-		Authors: []*cli.Author{
-			{
-				Name:  "Patrick Jahns",
-				Email: "github@patrickjahns.de",
-			},
-		},
 	}
 	cfg := config.Load()
 	cli.HelpFlag = &cli.BoolFlag{
